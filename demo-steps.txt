@@ -1,0 +1,23 @@
+minikube start --vm-driver=hyperv --hyperv-virtual-switch="Default Switch"
+
+kubectl run my-web --image=nginx --port=80
+kubectl expose deployment my-web --target-port=80 --type=NodePort
+
+minikube service --url
+
+curl url
+
+minikube dashboard
+
+
+
+PORT=$(kubectl get svc my-web  -o go-template='{{(index .spec.ports 0).nodePort}}')
+
+curl $IP:$PORT
+
+kubectl delete pod web 
+kubectl scale rc web --replicas=10
+
+ bx cs workers mycluster
+
+
